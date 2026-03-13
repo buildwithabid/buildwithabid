@@ -16,10 +16,6 @@ The goal is to build an AI system that doesn't just chat — it **thinks, prepar
 
 ---
 
-## Current project
-
----
-
 ## Follow the journey
 
 I share the process of building AI systems in public.
