@@ -1,16 +1,51 @@
-## Hi there 👋
+# Hi, I'm Abid 👋
 
-<!--
-**buildwithabid/buildwithabid** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+I build autonomous AI systems and document the process publicly.
 
-Here are some ideas to get you started:
+Currently building:
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## AI Chief of Staff
+
+An autonomous AI assistant designed to help manage:
+
+- email
+- calendar
+- documents
+- follow-ups
+- research
+- daily planning
+
+The goal is to build an AI system that doesn't just chat — it **thinks, prepares, and assists**.
+
+---
+
+## What I'm focused on
+
+- AI agents
+- autonomous workflows
+- AI memory systems
+- AI productivity tools
+- real-world AI applications
+
+---
+
+## Current project
+
+AI Chief of Staff (in progress)
+
+Features being built:
+
+- email triage
+- meeting preparation
+- document summarization
+- task automation
+- long-term memory
+
+---
+
+## Follow the journey
+
+I share the process of building AI systems in public.
+
+X (Twitter):  
+https://x.com/buildwithabid
