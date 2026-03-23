@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed — Freelance Graphic Designer</title>
+    <meta name="description" content="Ahmed is a freelance graphic designer specializing in brand identity, print design, UI/UX, and illustration. View portfolio and get in touch.">
+    <meta property="og:title" content="Ahmed — Freelance Graphic Designer">
+    <meta property="og:description" content="Creative graphic design services — branding, print, digital, and illustration.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#" class="nav__logo">Ahmed<span class="accent">.</span></a>
+            <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                <span class="hamburger"></span>
+            </button>
+            <ul class="nav__menu" id="nav-menu">
+                <li><a href="#hero" class="nav__link active">Home</a></li>
+                <li><a href="#about" class="nav__link">About</a></li>
+                <li><a href="#portfolio" class="nav__link">Portfolio</a></li>
+                <li><a href="#services" class="nav__link">Services</a></li>
+                <li><a href="#testimonials" class="nav__link">Testimonials</a></li>
+                <li><a href="#contact" class="nav__link">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero__bg"></div>
+            <div class="hero__content container">
+                <p class="hero__greeting animate-on-scroll">Hello, I'm</p>
+                <h1 class="hero__name animate-on-scroll">Ahmed</h1>
+                <p class="hero__title animate-on-scroll">Freelance Graphic Designer</p>
+                <p class="hero__tagline animate-on-scroll">Crafting visual stories that captivate, inspire, and elevate brands.</p>
+                <div class="hero__cta animate-on-scroll">
+                    <a href="#portfolio" class="btn btn--primary">View My Work</a>
+                    <a href="#contact" class="btn btn--outline">Get In Touch</a>
+                </div>
+            </div>
+            <a href="#about" class="hero__scroll" aria-label="Scroll down">
+                <span class="hero__scroll-icon"></span>
+            </a>
+        </section>
+
+        <!-- About Section -->
+        <section class="about section" id="about">
+            <div class="container">
+                <h2 class="section__title animate-on-scroll">About Me</h2>
+                <div class="about__grid">
+                    <div class="about__image animate-on-scroll">
+                        <div class="about__image-wrapper">
+                            <div class="about__image-placeholder">A</div>
+                        </div>
+                    </div>
+                    <div class="about__text animate-on-scroll">
+                        <p>I'm Ahmed, a passionate graphic designer with over 8 years of experience transforming ideas into compelling visual narratives. Based in the creative heart of the design world, I collaborate with startups, agencies, and established brands to build identities that stand out.</p>
+                        <p>My approach blends strategic thinking with artistic execution — every pixel has purpose, every layout tells a story. I believe great design isn't just about aesthetics; it's about solving problems and creating meaningful connections.</p>
+                        <div class="about__skills">
+                            <h3>Tools &amp; Skills</h3>
+                            <ul class="skills__list">
+                                <li>Adobe Photoshop</li>
+                                <li>Adobe Illustrator</li>
+                                <li>Figma</li>
+                                <li>After Effects</li>
+                                <li>InDesign</li>
+                                <li>Procreate</li>
+                                <li>Brand Strategy</li>
+                                <li>Typography</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="portfolio section" id="portfolio">
+            <div class="container">
+                <h2 class="section__title animate-on-scroll">My Work</h2>
+                <div class="portfolio__filters animate-on-scroll">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="print">Print</button>
+                    <button class="filter-btn" data-filter="digital">Digital</button>
+                    <button class="filter-btn" data-filter="illustration">Illustration</button>
+                </div>
+                <div class="portfolio__grid">
+                    <div class="portfolio__item" data-category="branding">
+                        <div class="portfolio__thumb" style="background-color: #2a1f3d;">
+                            <div class="portfolio__overlay">
+                                <h3>Luxe Cosmetics</h3>
+                                <p>Brand Identity</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="Luxe Cosmetics" data-description="Complete brand identity for a luxury cosmetics line — logo, color palette, packaging, and brand guidelines."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="digital">
+                        <div class="portfolio__thumb" style="background-color: #1a2f3d;">
+                            <div class="portfolio__overlay">
+                                <h3>FinTrack App</h3>
+                                <p>UI/UX Design</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="FinTrack App" data-description="Mobile app UI/UX design for a personal finance tracker — wireframes, prototypes, and final screens."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="print">
+                        <div class="portfolio__thumb" style="background-color: #3d2a1a;">
+                            <div class="portfolio__overlay">
+                                <h3>Brew & Co.</h3>
+                                <p>Packaging Design</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="Brew & Co." data-description="Artisan coffee packaging design — label design, box layout, and print-ready files for a specialty roaster."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="illustration">
+                        <div class="portfolio__thumb" style="background-color: #1a3d2a;">
+                            <div class="portfolio__overlay">
+                                <h3>Urban Jungle</h3>
+                                <p>Editorial Illustration</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="Urban Jungle" data-description="Series of editorial illustrations for a sustainability magazine — hand-drawn and digitally colored."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="branding">
+                        <div class="portfolio__thumb" style="background-color: #3d1a2a;">
+                            <div class="portfolio__overlay">
+                                <h3>Nomad Studio</h3>
+                                <p>Visual Identity</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="Nomad Studio" data-description="Visual identity for a co-working space — logo system, signage, stationery, and digital templates."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="digital">
+                        <div class="portfolio__thumb" style="background-color: #2a3d1a;">
+                            <div class="portfolio__overlay">
+                                <h3>GreenPlate</h3>
+                                <p>Website Design</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="GreenPlate" data-description="Responsive website design for an organic meal delivery service — landing page, menu UI, and checkout flow."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="print">
+                        <div class="portfolio__thumb" style="background-color: #1a1a3d;">
+                            <div class="portfolio__overlay">
+                                <h3>Pulse Festival</h3>
+                                <p>Poster Design</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="Pulse Festival" data-description="Event poster and promotional materials for an electronic music festival — bold typography and neon aesthetics."></div>
+                    </div>
+                    <div class="portfolio__item" data-category="illustration">
+                        <div class="portfolio__thumb" style="background-color: #3d3d1a;">
+                            <div class="portfolio__overlay">
+                                <h3>Tiny Worlds</h3>
+                                <p>Children's Book</p>
+                            </div>
+                        </div>
+                        <div class="portfolio__data" data-title="Tiny Worlds" data-description="Full illustration set for a children's picture book — 24 pages of whimsical character and environment art."></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="services section" id="services">
+            <div class="container">
+                <h2 class="section__title animate-on-scroll">Services</h2>
+                <div class="services__grid">
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <h3>Brand Identity</h3>
+                        <p>Logos, color systems, typography, and comprehensive brand guidelines that define who you are.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <h3>UI/UX Design</h3>
+                        <p>Intuitive interfaces and seamless user experiences for web and mobile applications.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                        </div>
+                        <h3>Print Design</h3>
+                        <p>Packaging, posters, brochures, business cards, and all things that live in the physical world.</p>
+                    </div>
+                    <div class="service-card animate-on-scroll">
+                        <div class="service-card__icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+                        </div>
+                        <h3>Illustration</h3>
+                        <p>Custom illustrations for editorial, advertising, books, and digital products that tell your story.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials section" id="testimonials">
+            <div class="container">
+                <h2 class="section__title animate-on-scroll">What Clients Say</h2>
+                <div class="testimonials__grid">
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>
+                            <p>"Ahmed completely transformed our brand. His attention to detail and creative vision took our identity from forgettable to unforgettable. Truly exceptional work."</p>
+                        </blockquote>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar">S</div>
+                            <div>
+                                <strong>Sarah Mitchell</strong>
+                                <span>CEO, Luxe Cosmetics</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>
+                            <p>"Working with Ahmed was a seamless experience. He understood our vision instantly and delivered designs that exceeded every expectation. Highly recommended."</p>
+                        </blockquote>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar">J</div>
+                            <div>
+                                <strong>James Park</strong>
+                                <span>Founder, FinTrack</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card animate-on-scroll">
+                        <div class="testimonial-card__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>
+                            <p>"Ahmed's illustrations brought our book to life in ways we never imagined. His ability to capture emotion and whimsy in every frame is remarkable."</p>
+                        </blockquote>
+                        <div class="testimonial-card__author">
+                            <div class="testimonial-card__avatar">R</div>
+                            <div>
+                                <strong>Rachel Torres</strong>
+                                <span>Author, Tiny Worlds</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact section" id="contact">
+            <div class="container">
+                <h2 class="section__title animate-on-scroll">Get In Touch</h2>
+                <p class="section__subtitle animate-on-scroll">Have a project in mind? Let's create something amazing together.</p>
+                <div class="contact__grid">
+                    <form class="contact__form animate-on-scroll" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            <span class="form-error"></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" placeholder="Project inquiry">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+                            <span class="form-error"></span>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full">Send Message</button>
+                        <p class="form-status" id="form-status"></p>
+                    </form>
+                    <div class="contact__info animate-on-scroll">
+                        <div class="contact__info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <div>
+                                <strong>Email</strong>
+                                <p>hello@ahmeddesigns.com</p>
+                            </div>
+                        </div>
+                        <div class="contact__info-item">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <div>
+                                <strong>Location</strong>
+                                <p>Available Worldwide</p>
+                            </div>
+                        </div>
+                        <div class="contact__socials">
+                            <a href="#" aria-label="Dribbble" class="social-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+                            </a>
+                            <a href="#" aria-label="Behance" class="social-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12.5h8c1.5 0 3-1 3-3s-1.5-3-3-3H1v10h8.5c1.5 0 3-1 3-3s-1.5-3-3-3"/><path d="M15 8h6m-3 0v8m-3-4h6c0-2.5-1.5-4-3-4s-3 1.5-3 4c0 2.5 1.5 4 3 4s2.5-1 3-2.5"/></svg>
+                            </a>
+                            <a href="#" aria-label="Instagram" class="social-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
+                            </a>
+                            <a href="#" aria-label="LinkedIn" class="social-link">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <a href="#" class="footer__logo">Ahmed<span class="accent">.</span></a>
+            <p class="footer__copy">&copy; 2026 Ahmed. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Portfolio image viewer">
+        <button class="lightbox__close" aria-label="Close lightbox">&times;</button>
+        <button class="lightbox__prev" aria-label="Previous image">&#8249;</button>
+        <button class="lightbox__next" aria-label="Next image">&#8250;</button>
+        <div class="lightbox__content">
+            <div class="lightbox__image-wrapper">
+                <div class="lightbox__image" id="lightbox-image"></div>
+            </div>
+            <div class="lightbox__info">
+                <h3 id="lightbox-title"></h3>
+                <p id="lightbox-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <script defer src="js/main.js"></script>
+</body>
+</html>

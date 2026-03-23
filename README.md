@@ -1,24 +1,22 @@
-# Hi, I'm Abid 👋
+# Ahmed — Freelance Graphic Designer Portfolio
 
-I build autonomous AI systems and document the process publicly.
+A professional portfolio website for Ahmed, a freelance graphic designer.
 
-The goal is to build an AI system that doesn't just chat — it **thinks, prepares, and assists**.
+## Features
 
----
+- Dark theme with gold accent
+- Responsive single-page layout
+- Filterable portfolio gallery with lightbox viewer
+- Contact form (via Formspree)
+- Smooth scroll animations
+- Mobile-friendly navigation
 
-## What I'm focused on
+## Setup
 
-- AI agents
-- autonomous workflows
-- AI memory systems
-- AI productivity tools
-- real-world AI applications
+1. Clone the repo
+2. Open `index.html` in a browser (or run `python3 -m http.server`)
+3. To enable the contact form, replace `YOUR_FORM_ID` in `index.html` with your [Formspree](https://formspree.io) form ID
 
----
+## Tech
 
-## Follow the journey
-
-I share the process of building AI systems in public.
-
-X (Twitter):  
-https://x.com/buildwithabid
+Static HTML, CSS, and vanilla JavaScript — no build tools or dependencies.
