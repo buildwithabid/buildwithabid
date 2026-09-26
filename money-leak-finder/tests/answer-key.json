@@ -1,0 +1,62 @@
+{
+  "_readme": "What a careful human would flag in each sample. 'merchant' is matched case-insensitively against the tool's merchant name. A recurring item with no 'priceRise' must NOT be reported as a price rise. Anything the tool reports that is not listed here counts as a false alarm. 'mustNotFlag' merchants must not appear in any finding.",
+
+  "uk-bank-statement.csv": {
+    "about": "UK current account. DD/MM/YYYY, separate Paid out / Paid in columns, £ and commas, 4 junk rows above the header, newest first.",
+    "expectColumnStep": false,
+    "findings": [
+      { "merchant": "patel", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 950.00, "status": "active" },
+      { "merchant": "croydon council", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 142.00, "status": "active" },
+      { "merchant": "netflix", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 12.99, "status": "active", "priceRise": { "from": 10.99, "to": 12.99 } },
+      { "merchant": "spotify", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 11.99, "status": "active" },
+      { "merchant": "puregym", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 24.99, "status": "active" },
+      { "merchant": "ee", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 32.00, "status": "active" },
+      { "merchant": "amazon prime", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 8.99, "status": "active" },
+      { "merchant": "disney", "type": "recurring", "every": "monthly", "amount": 7.99, "status": "stopped" },
+      { "merchant": "deliveroo", "type": "duplicate", "confidence": "Possible", "amount": 23.45 }
+    ],
+    "mustNotFlag": ["currys", "john lewis", "trainline", "tesco", "pret", "shell", "acme"]
+  },
+
+  "us-credit-card.csv": {
+    "about": "US credit card. MM/DD/YYYY, one Amount column where charges are positive, $ and commas, city names after long spaces, 13 months.",
+    "expectColumnStep": false,
+    "findings": [
+      { "merchant": "netflix", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 17.99, "status": "active", "priceRise": { "from": 15.49, "to": 17.99 } },
+      { "merchant": "spotify", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 11.99, "status": "active" },
+      { "merchant": "apple", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 2.99, "status": "active" },
+      { "merchant": "hellofresh", "type": "recurring", "every": "weekly", "confidence": "Likely", "amount": 69.99, "status": "active" },
+      { "merchant": "state farm", "type": "recurring", "every": "quarterly", "confidence": "Likely", "amount": 186.00, "status": "active" },
+      { "merchant": "amazon prime", "type": "recurring", "every": "yearly", "confidence": "Possible", "amount": 139.00, "status": "active" },
+      { "merchant": "comcast", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 89.99, "status": "active" },
+      { "merchant": "comcast", "type": "duplicate", "confidence": "Likely", "amount": 89.99 },
+      { "merchant": "planet fitness", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 10.00, "status": "active" }
+    ],
+    "mustNotFlag": ["best buy", "delta", "mktplace", "starbucks", "wholefds", "shell", "autopay"]
+  },
+
+  "eu-bank-export.xlsx": {
+    "about": "European bank, Excel file. Real Excel dates, amounts always positive with a separate Debit/credit column, title rows above the header, a second sheet to ignore.",
+    "expectColumnStep": false,
+    "findings": [
+      { "merchant": "ziggo", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 54.00, "status": "active" },
+      { "merchant": "vattenfall", "type": "recurring", "every": "monthly", "confidence": "Likely", "status": "active", "varies": true },
+      { "merchant": "spotify", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 11.99, "status": "active", "priceRise": { "from": 10.99, "to": 11.99 } },
+      { "merchant": "basic fit", "type": "recurring", "every": "fourweekly", "confidence": "Likely", "amount": 29.99, "status": "active" },
+      { "merchant": "centraal beheer", "type": "recurring", "every": "quarterly", "confidence": "Possible", "amount": 87.50, "status": "active" },
+      { "merchant": "videoland", "type": "recurring", "every": "monthly", "amount": 9.99, "status": "stopped" },
+      { "merchant": "bol", "type": "duplicate", "confidence": "Possible", "amount": 59.95 }
+    ],
+    "mustNotFlag": ["mediamarkt", "klm", "albert heijn", "jumbo", "ns groep", "acme"]
+  },
+
+  "no-header-semicolon.csv": {
+    "about": "Extra edge case. No header row, semicolons, decimal commas (1.299,00), DD.MM.YYYY, 4 months. The tool should ask which column is which.",
+    "expectColumnStep": true,
+    "findings": [
+      { "merchant": "netflix", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 13.99, "status": "active" },
+      { "merchant": "telekom", "type": "recurring", "every": "monthly", "confidence": "Likely", "amount": 39.95, "status": "active" }
+    ],
+    "mustNotFlag": ["saturn", "rewe", "gehalt", "acme"]
+  }
+}
