@@ -1,0 +1,16 @@
+{
+  "actorSpecification": 1,
+  "name": "google-trends-scraper-reliable",
+  "title": "Google Trends Scraper (Reliable): Interest, Regions, Related & Trending",
+  "description": "Google Trends data that doesn't fail: interest over time, interest by region, related queries and topics, comparisons of up to 5 terms, and today's trending searches. Automatic retries and IP rotation. You only pay for results that contain data.",
+  "version": "1.0",
+  "buildTag": "latest",
+  "minMemoryMbytes": 128,
+  "maxMemoryMbytes": 1024,
+  "input": "./input_schema.json",
+  "storages": {
+    "dataset": "./dataset_schema.json"
+  },
+  "dockerfile": "../Dockerfile",
+  "readme": "../README.md"
+}
