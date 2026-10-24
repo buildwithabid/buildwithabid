@@ -305,13 +305,10 @@ class TrendsClient:
 
     # -- high level --------------------------------------------------------------
     async def fetch(self, terms: list[str], geo: str, time_range: str, *, category: int = 0, prop: str = "",
-                    sections: tuple[str, ...] = ("interestOverTime", "interestByRegion", "relatedQueries",
-                                                 "relatedTopics"),
+                    sections: tuple[str, ...] = ("interestOverTime", "interestByRegion", "relatedQueries"),
                     resolution: str | None = None, include_low_volume: bool = False) -> dict[str, Any]:
         """Everything Trends shows for one search term, or for up to five compared terms."""
         widgets = await self.explore(terms, geo, time_range, category, prop)
-        flagged = any((w["request"].get("userConfig") or {}).get("userType") == "USER_TYPE_SCRAPER"
-                      for w in widgets)
         by_id = {w["id"]: w for w in widgets}
         out: dict[str, Any] = {}
         errors: list[str] = []
@@ -361,16 +358,6 @@ class TrendsClient:
                     per_term[term] = parse_related(await self.widget("relatedsearches", w), kind)
                 except TrendsError as e:
                     errors.append(f"{section} ({term}): {e}")
-            if kind == "topics" and flagged and not any(v["top"] or v["rising"] for v in per_term.values()) \
-                    and self.pool.escalate():
-                # Google answered as it does for suspected bots: topics withheld. Try once more
-                # from the next proxy tier, which is usually a residential IP.
-                try:
-                    return await self.fetch(terms, geo, time_range, category=category, prop=prop,
-                                            sections=sections, resolution=resolution,
-                                            include_low_volume=include_low_volume)
-                except TrendsError:
-                    pass
             if len(terms) == 1:
                 value = per_term.get(terms[0], {"top": [], "rising": []})
                 has_data |= bool(value["top"] or value["rising"])

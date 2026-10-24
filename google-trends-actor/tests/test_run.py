@@ -42,6 +42,7 @@ def test_defaults_and_term_cleanup():
     assert cfg.time_range == "today 12-m" and cfg.geo == "" and cfg.prop == ""
     assert cfg.groups() == [["Python"], ["rust lang"]]
     assert cfg.proxy == {"useApifyProxy": True}
+    assert cfg.sections == ("interestOverTime", "interestByRegion", "relatedQueries")
 
 
 def test_comparison_groups_of_five():

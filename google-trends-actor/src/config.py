@@ -20,6 +20,9 @@ TIME_RANGES = {
 PROPERTIES = {"web": "", "images": "images", "news": "news", "shopping": "froogle", "youtube": "youtube"}
 RESOLUTIONS = {"auto": None, "country": "COUNTRY", "region": "REGION", "city": "CITY", "metro": "DMA"}
 SECTIONS = ("interestOverTime", "interestByRegion", "relatedQueries", "relatedTopics")
+# Related topics are opt-in: Google withholds them from automated requests most of the time,
+# so fetching them by default costs a request per term for usually-empty lists.
+DEFAULT_SECTIONS = ("interestOverTime", "interestByRegion", "relatedQueries")
 MAX_COMPARE = 5     # Google Trends compares at most five terms at once
 
 _GEO = re.compile(r"^[A-Z]{2}(-[A-Z0-9]{1,3})?$")
@@ -35,7 +38,7 @@ class RunConfig:
     time_range: str = "today 12-m"
     category: int = 0
     property_name: str = "web"
-    sections: tuple[str, ...] = SECTIONS
+    sections: tuple[str, ...] = DEFAULT_SECTIONS
     resolution: str | None = None
     include_low_volume: bool = False
     trending_geos: list[str] = field(default_factory=lambda: ["US"])
@@ -127,7 +130,7 @@ def parse_input(raw: dict[str, Any]) -> RunConfig:
         if cfg.property_name not in PROPERTIES:
             raise ValueError(f"searchType must be one of: {', '.join(PROPERTIES)}")
 
-        sections = raw.get("outputs") or list(SECTIONS)
+        sections = raw.get("outputs") or list(DEFAULT_SECTIONS)
         bad = [s for s in sections if s not in SECTIONS]
         if bad:
             raise ValueError(f"unknown outputs: {', '.join(bad)}. Choose from: {', '.join(SECTIONS)}")

@@ -11,7 +11,7 @@ Built for reliability. Google rate-limits Trends hard, which is why many Trends 
 | **Interest over time** | Search interest from 0 to 100 for every hour, day or week in your time range. The current period is marked `isPartial` |
 | **Interest by region** | Countries, regions or states, cities, or US metro areas, ranked by interest |
 | **Related queries** | `top`: the most searched related queries. `rising`: the fastest-growing ones, where "Breakout" means more than 5000% growth |
-| **Related topics** | Topics (people, companies, concepts) linked to your term, also top and rising |
+| **Related topics** (optional) | Topics (people, companies, concepts) linked to your term. Google often withholds these from automated requests, so they're off by default |
 | **Comparisons** | Up to 5 terms on one shared scale, with averages |
 | **Trending now** | Today's trending searches per country, with approximate search volume and news links |
 
@@ -91,7 +91,6 @@ One dataset item per search term, or per comparison group. A real result, shorte
     "top": [{"query": "bitcoin price", "value": 100, "formattedValue": "100", "link": "https://trends.google.com/trends/explore?q=bitcoin+price&date=today+3-m"}],
     "rising": [{"query": "mua bitcoin binance", "value": 21200, "formattedValue": "Breakout", "link": "https://trends.google.com/trends/explore?q=mua+bitcoin+binance&date=today+3-m"}]
   },
-  "relatedTopics": {"top": [], "rising": []},
   "scrapedAt": "2026-10-24T05:02:01Z"
 }
 ```
@@ -128,7 +127,8 @@ AI agents (Claude, ChatGPT, Cursor and others) can call it as a tool through the
 - **Values are relative, not search counts.** 100 is the busiest point for that term, place and time; 50 means half as popular. They aren't comparable across separate runs unless you use comparison mode.
 - **Google samples its data.** The same query can return slightly different numbers on different days. That's how Google Trends works, not an error.
 - **Comparisons are limited to 5 terms.** Longer lists are split into groups of 5, and values are only comparable inside a group. Comparison items name the most searched term in `leader`.
-- **Related topics are sometimes empty.** Google withholds them for some queries and some IPs. The scraper retries once from a residential IP, then returns empty lists rather than failing.
+- **Related topics are often empty.** Google usually withholds them from automated requests, so they're off by default. Turn them on in "Data to include" if you want to try; you aren't charged extra, and empty lists never fail a run.
+- **Rising queries can look unrelated.** Google sometimes lists searches like "walmart near me" as rising for a broad term. That's Google's own data, returned as-is.
 
 ## FAQ
 

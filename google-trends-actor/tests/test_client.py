@@ -27,10 +27,10 @@ async def test_full_fetch_single_term(make_client, google):
     assert len(r["interestOverTime"]) == 53
     assert len(r["interestByRegion"]) == 51 and r["regionResolutionUsed"] == "REGION"
     assert len(r["relatedQueries"]["top"]) == 25
-    assert r["relatedTopics"] == {"top": [], "rising": []}
+    assert "relatedTopics" not in r                      # opt-in only
     assert "partialErrors" not in r
     assert google.count("/trends/api/explore") == 1
-    assert google.count("/trends/api/widgetdata/") == 4
+    assert google.count("/trends/api/widgetdata/") == 3
     assert c.pool.created == 1 and c.pool.burned == 0
 
 
@@ -122,29 +122,22 @@ async def test_supported_region_level_is_used(make_client, google):
     assert "coordinates" in r["interestByRegion"][0]
 
 
-async def test_withheld_topics_retry_once_on_the_next_tier(make_client, google):
-    c = make_client([tier(0), tier(1)])
-    real_topics = json.dumps({"default": {"rankedList": [
+async def test_withheld_topics_never_switch_proxies_or_refetch(make_client, google):
+    # Google withholds topics from automated requests; that must not push the whole run
+    # onto expensive residential IPs or repeat every request.
+    c = make_client([tier(0), tier(1)], escalate_after=1)
+    r = await c.fetch(["python"], "US", "today 12-m", sections=("relatedTopics",))
+    assert r["relatedTopics"] == {"top": [], "rising": []} and r["hasData"] is False
+    assert c.pool.tier == 0
+    assert google.count("/explore") == 1 and google.count("/relatedsearches") == 1
+
+
+async def test_topics_are_returned_when_google_sends_them(make_client, google):
+    google.topics_body = ")]}',\n" + json.dumps({"default": {"rankedList": [
         {"rankedKeyword": [{"topic": {"mid": "/m/1", "title": "Python", "type": "Language"}, "value": 100,
                             "formattedValue": "100"}]}, {"rankedKeyword": []}]}})
-
-    original = google.handler
-
-    def handler(request):
-        if c.pool.tier == 1 and "relatedsearches" in request.url.path and "ENTITY" in request.url.params["req"]:
-            google.topics_body = ")]}',\n" + real_topics
-        return original(request)
-
-    google.handler = handler
-    c.pool.transport = __import__("httpx").MockTransport(handler)
-    r = await c.fetch(["python"], "US", "today 12-m", sections=("relatedTopics",))
-    assert c.pool.tier == 1                                # explore fixture is flagged USER_TYPE_SCRAPER
-    assert r["relatedTopics"]["top"][0]["title"] == "Python"
-
-
-async def test_withheld_topics_without_more_tiers_returns_empty(make_client, google):
-    r = await make_client([tier(0)]).fetch(["python"], "US", "today 12-m", sections=("relatedTopics",))
-    assert r["relatedTopics"] == {"top": [], "rising": []} and r["hasData"] is False
+    r = await make_client().fetch(["python"], "US", "today 12-m", sections=("relatedTopics",))
+    assert r["relatedTopics"]["top"][0]["title"] == "Python" and r["hasData"]
 
 
 async def test_trending_now(make_client):

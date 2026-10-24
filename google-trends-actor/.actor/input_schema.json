@@ -85,7 +85,7 @@
     "outputs": {
       "title": "Data to include",
       "type": "array",
-      "description": "Pick the sections you need. Fewer sections means faster runs.",
+      "description": "Pick the sections you need. Fewer sections means faster runs. Related topics are off by default because Google usually withholds them from automated requests.",
       "editor": "select",
       "items": {
         "type": "string",
@@ -99,14 +99,13 @@
           "Interest over time",
           "Interest by region",
           "Related queries",
-          "Related topics"
+          "Related topics (often withheld by Google)"
         ]
       },
       "default": [
         "interestOverTime",
         "interestByRegion",
-        "relatedQueries",
-        "relatedTopics"
+        "relatedQueries"
       ]
     },
     "searchType": {
