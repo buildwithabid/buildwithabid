@@ -45,7 +45,7 @@ Leave the default dataset-item event off; the code only charges for results that
 - **Categories:** SEO tools, Marketing, Developer tools.
 - **Title and description** are already in `.actor/actor.json`. `README.md` is the Store page.
 - Add an icon and two example inputs (single term, comparison).
-- Set the default memory to 256 MB.
+- Default memory is already 256 MB (`defaultMemoryMbytes` in `.actor/actor.json`; measured peak is 85 MB for 10 terms).
 
 ## 5. After launch (what the agent team should watch)
 
