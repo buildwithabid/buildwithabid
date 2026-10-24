@@ -70,29 +70,29 @@ One dataset item per search term, or per comparison group. A real result, shorte
   "timeRange": "today 3-m",
   "exploreUrl": "https://trends.google.com/trends/explore?q=bitcoin&date=today+3-m",
   "hasData": true,
-  "latestValue": 25,
-  "averageValue": 31.4,
+  "latestValue": 24,
+  "averageValue": 38.6,
   "peakValue": 100,
-  "peakDate": "2026-08-14",
-  "trendChangePercent": -22,
+  "peakDate": "2026-09-21",
+  "trendChangePercent": -29,
   "topRegion": "Switzerland",
   "topQuery": "bitcoin price",
   "topRisingQuery": "mua bitcoin binance",
   "interestOverTime": [
-    { "date": "2026-10-22", "dateTime": "2026-10-22T00:00:00Z", "formattedTime": "Oct 22, 2026", "isPartial": false, "value": 25 },
-    { "date": "2026-10-23", "dateTime": "2026-10-23T00:00:00Z", "formattedTime": "Oct 23, 2026", "isPartial": true, "value": 24 }
+    {"date": "2026-10-23", "dateTime": "2026-10-23T00:00:00Z", "formattedTime": "Oct 23, 2026", "isPartial": false, "value": 24},
+    {"date": "2026-10-24", "dateTime": "2026-10-24T00:00:00Z", "formattedTime": "Oct 24, 2026", "isPartial": true, "value": 21}
   ],
   "regionResolutionUsed": "COUNTRY",
   "interestByRegion": [
-    { "geoName": "Switzerland", "geoCode": "CH", "value": 100 },
-    { "geoName": "Netherlands", "geoCode": "NL", "value": 89 }
+    {"geoName": "Switzerland", "geoCode": "CH", "value": 100},
+    {"geoName": "Netherlands", "geoCode": "NL", "value": 90}
   ],
   "relatedQueries": {
-    "top": [{ "query": "bitcoin price", "value": 100, "formattedValue": "100", "link": "https://trends.google.com/trends/explore?q=bitcoin+price&date=today+3-m" }],
-    "rising": [{ "query": "mua bitcoin binance", "value": 25350, "formattedValue": "Breakout", "link": "https://trends.google.com/trends/explore?q=mua+bitcoin+binance&date=today+3-m" }]
+    "top": [{"query": "bitcoin price", "value": 100, "formattedValue": "100", "link": "https://trends.google.com/trends/explore?q=bitcoin+price&date=today+3-m"}],
+    "rising": [{"query": "mua bitcoin binance", "value": 21200, "formattedValue": "Breakout", "link": "https://trends.google.com/trends/explore?q=mua+bitcoin+binance&date=today+3-m"}]
   },
-  "relatedTopics": { "top": [], "rising": [] },
-  "scrapedAt": "2026-10-23T12:53:11Z"
+  "relatedTopics": {"top": [], "rising": []},
+  "scrapedAt": "2026-10-24T05:02:01Z"
 }
 ```
 
