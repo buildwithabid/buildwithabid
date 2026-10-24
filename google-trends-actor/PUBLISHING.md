@@ -25,14 +25,21 @@ Before going public, aim for at least 98% of terms with data.
 
 ## 3. Turn on pay-per-event pricing
 
-Actor → **Publication → Monetization → Pay per event**. Add exactly these event names (the code charges them):
+Actor → **Publishing → Monetization → Set up monetization → Pay per event**.
+
+1. **Delete** the preset `apify-default-dataset-item` event. It would charge for every item, including failed and empty ones.
+2. **Delete** the preset `apify-actor-start` event (or keep it at a tiny price and mention it in the README).
+3. Add exactly these event names (the code charges them):
 
 | Event name | Title shown to users | Suggested price |
 |---|---|---|
 | `trend-result` | Search term result | $0.0025 (leader charges $0.003, another strong competitor $0.002) |
 | `trending-search` | Trending search | $0.0008 (competitors charge $0.001–$0.0012) |
 
-Leave the default dataset-item event off; the code only charges for results that contain data.
+4. **Primary event:** `trend-result`.
+5. Don't transfer platform costs to users; they're already covered by the price.
+
+Set prices before the first paying users arrive. Increases take 14 days to apply after that, and only once a month.
 
 **Your costs** come out of your revenue, so check your plan's prices:
 
