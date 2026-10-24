@@ -1,0 +1,12 @@
+{
+  "actorOutputSchemaVersion": 1,
+  "title": "Google Trends results",
+  "properties": {
+    "results": {
+      "type": "string",
+      "title": "Results",
+      "description": "One item per search term, comparison group or trending search.",
+      "template": "{{links.apiDefaultDatasetUrl}}/items"
+    }
+  }
+}

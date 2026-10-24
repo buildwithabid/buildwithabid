@@ -1,0 +1,64 @@
+# Copy to config.toml and pass with:  arbagent -c config.toml <command>
+# Every key is optional; anything left out uses the default shown here.
+# API keys are NEVER read from this file. Set BINANCE_API_KEY and
+# BINANCE_API_SECRET in the environment for live mode.
+
+[general]
+start_assets = ["USDT"]          # every cycle starts and ends in one of these
+data_dir = "data"                # journal.sqlite and brain-<mode>.json live here
+kill_switch_file = "STOP"        # create this file to stop trading immediately
+status_interval_s = 10
+log_level = "INFO"
+
+[exchange]
+rest_url = "https://api.binance.com"
+public_rest_url = "https://data-api.binance.vision"   # market data only (scan/paper)
+stream_url = "wss://data-stream.binance.vision"
+recv_window_ms = 5000
+request_timeout_s = 5.0
+require_no_withdraw_permission = true   # refuse keys that can withdraw funds
+
+[universe]
+exclude_assets = []
+include_only_assets = []         # empty = every asset
+min_24h_quote_volume_usdt = 250000   # drop thin markets (phantom edges); 0 = keep all
+max_streams_per_connection = 200
+
+[strategy]
+taker_fee = 0.001                # overwritten in live mode by your account's real rate
+bnb_fee_discount = false         # true if you pay fees in BNB (Binance charges 75%)
+fee_overrides = {}               # e.g. { FDUSDUSDT = 0.0 } for zero-fee pairs
+min_edge_bps = 0.5               # net edge after fees to consider a cycle
+capacity_fraction = 0.5          # take at most this share of visible top-of-book size
+max_trade = { USDT = 50.0 }      # per cycle, in start-asset units
+min_trade = { USDT = 6.0 }
+leg_slippage_bps = 3.0           # legs 2-3 may cross the touch by this much
+count_dust = true                # value rounding dust (it is swept back later)
+min_profit = { USDT = 0.002 }    # don't send orders for less than this
+
+[brain]
+policy = "auto"                  # auto = thompson in paper, lcb live; or lcb/mean/thompson
+prior_strength = 5.0
+prior_complete_prob = 0.5
+forgetting = 0.995
+risk_aversion_z = 1.0
+min_ev_bps = 0.5
+safety_margin_bps = 1.0
+triangle_cooldown_s = 5.0
+prior_adverse_move_bps = 8.0
+
+[risk]
+daily_loss_limit_usdt = 10.0
+max_consecutive_failures = 3
+failure_pause_s = 300
+max_cycles_per_minute = 10
+max_stuck_value_usdt = 10.0
+max_daily_volume_usdt = 5000
+stream_stale_s = 10
+
+[paper]
+rtt_ms = 120                     # measure yours: arbagent ping
+rtt_jitter_ms = 30
+depth_penalty_bps = 10
+starting_balances = { USDT = 1000.0 }
+seed = 7

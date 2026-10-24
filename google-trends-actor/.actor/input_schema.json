@@ -1,0 +1,229 @@
+{
+  "title": "Google Trends Scraper input",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "mode": {
+      "title": "What to fetch",
+      "type": "string",
+      "description": "Search terms: interest over time, by region and related searches for your keywords. Trending now: today's trending searches in one or more countries.",
+      "editor": "select",
+      "enum": [
+        "explore",
+        "trendingNow"
+      ],
+      "enumTitles": [
+        "Search terms (interest, regions, related)",
+        "Trending now"
+      ],
+      "default": "explore"
+    },
+    "searchTerms": {
+      "title": "Search terms",
+      "type": "array",
+      "description": "Keywords to look up, one per line. Each term is fetched separately unless you turn on comparison.",
+      "editor": "stringList",
+      "prefill": [
+        "artificial intelligence",
+        "chatgpt"
+      ]
+    },
+    "compareTerms": {
+      "title": "Compare terms against each other",
+      "type": "boolean",
+      "description": "Off: every term gets its own 0-100 scale. On: terms are compared on one shared scale, like typing them together in Google Trends. Google compares at most 5 terms at once, so longer lists are split into groups of 5 (values are only comparable inside a group).",
+      "default": false
+    },
+    "geo": {
+      "title": "Location",
+      "type": "string",
+      "description": "Country code (US, GB, DE, PK...), or country plus region (US-CA, GB-ENG). Leave empty for worldwide.",
+      "editor": "textfield",
+      "default": ""
+    },
+    "timeRange": {
+      "title": "Time range",
+      "type": "string",
+      "description": "Ignored when start and end dates are set.",
+      "editor": "select",
+      "enum": [
+        "past-hour",
+        "past-4-hours",
+        "past-day",
+        "past-7-days",
+        "past-30-days",
+        "past-90-days",
+        "past-12-months",
+        "past-5-years",
+        "since-2004"
+      ],
+      "enumTitles": [
+        "Past hour",
+        "Past 4 hours",
+        "Past day",
+        "Past 7 days",
+        "Past 30 days",
+        "Past 90 days",
+        "Past 12 months",
+        "Past 5 years",
+        "2004 to now"
+      ],
+      "default": "past-12-months"
+    },
+    "startDate": {
+      "title": "Custom start date",
+      "type": "string",
+      "description": "Optional. Use together with an end date for a custom range (from 2004-01-01).",
+      "editor": "datepicker"
+    },
+    "endDate": {
+      "title": "Custom end date",
+      "type": "string",
+      "description": "Optional. Use together with a start date.",
+      "editor": "datepicker"
+    },
+    "outputs": {
+      "title": "Data to include",
+      "type": "array",
+      "description": "Pick the sections you need. Fewer sections means faster runs. Related topics are off by default because Google usually withholds them from automated requests.",
+      "editor": "select",
+      "items": {
+        "type": "string",
+        "enum": [
+          "interestOverTime",
+          "interestByRegion",
+          "relatedQueries",
+          "relatedTopics"
+        ],
+        "enumTitles": [
+          "Interest over time",
+          "Interest by region",
+          "Related queries",
+          "Related topics (often withheld by Google)"
+        ]
+      },
+      "default": [
+        "interestOverTime",
+        "interestByRegion",
+        "relatedQueries"
+      ]
+    },
+    "searchType": {
+      "title": "Search type",
+      "type": "string",
+      "editor": "select",
+      "enum": [
+        "web",
+        "images",
+        "news",
+        "shopping",
+        "youtube"
+      ],
+      "enumTitles": [
+        "Web search",
+        "Image search",
+        "News search",
+        "Google Shopping",
+        "YouTube search"
+      ],
+      "default": "web",
+      "description": "Which Google search to measure: regular web search, images, news, Google Shopping or YouTube."
+    },
+    "category": {
+      "title": "Category",
+      "type": "integer",
+      "description": "Google Trends category id, e.g. 7 = Finance, 5 = Computers & Electronics, 71 = Food & Drink. 0 = all categories.",
+      "editor": "number",
+      "minimum": 0,
+      "default": 0
+    },
+    "regionResolution": {
+      "title": "Region detail",
+      "type": "string",
+      "description": "Level of detail for interest by region. If Google doesn't offer that level for your location, its default level is used and reported in regionResolutionUsed.",
+      "editor": "select",
+      "enum": [
+        "auto",
+        "country",
+        "region",
+        "city",
+        "metro"
+      ],
+      "enumTitles": [
+        "Google's default",
+        "Country",
+        "Region / state",
+        "City",
+        "Metro area (US only)"
+      ],
+      "default": "auto"
+    },
+    "includeLowSearchVolume": {
+      "title": "Include low-volume regions",
+      "type": "boolean",
+      "description": "Also list regions where Google has too little data to show a value.",
+      "default": false
+    },
+    "trendingGeos": {
+      "title": "Trending now: countries",
+      "type": "array",
+      "description": "Used in Trending now mode. Country codes, e.g. US, GB, IN.",
+      "editor": "stringList",
+      "prefill": [
+        "US"
+      ]
+    },
+    "language": {
+      "sectionCaption": "Advanced",
+      "title": "Language",
+      "type": "string",
+      "description": "Language for topic names and labels, e.g. en-US, de, fr.",
+      "editor": "textfield",
+      "default": "en-US"
+    },
+    "timezoneOffsetMinutes": {
+      "title": "Timezone offset (minutes)",
+      "type": "integer",
+      "description": "Offset from UTC used for hourly and daily data, as Google expects it (UTC minus local time; e.g. 300 for US Eastern winter time). 0 = UTC.",
+      "editor": "number",
+      "default": 0
+    },
+    "proxyConfiguration": {
+      "title": "Proxy",
+      "type": "object",
+      "description": "Google rate-limits heavily, so a proxy is strongly recommended. The default starts with cheaper datacenter IPs and switches to residential IPs only if Google blocks.",
+      "editor": "proxy",
+      "prefill": {
+        "useApifyProxy": true
+      },
+      "default": {
+        "useApifyProxy": true
+      }
+    },
+    "escalateToResidential": {
+      "title": "Switch to residential IPs when blocked",
+      "type": "boolean",
+      "description": "After repeated blocks, retry through Apify residential proxies.",
+      "default": true
+    },
+    "maxConcurrency": {
+      "title": "Parallel requests",
+      "type": "integer",
+      "description": "Terms fetched at the same time. Higher is faster but gets blocked more often.",
+      "editor": "number",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 3
+    },
+    "maxRetries": {
+      "title": "Retries per request",
+      "type": "integer",
+      "description": "How many times to retry a blocked request with a fresh IP before giving up on that term.",
+      "editor": "number",
+      "minimum": 0,
+      "maximum": 15,
+      "default": 6
+    }
+  },
+  "required": []
+}
