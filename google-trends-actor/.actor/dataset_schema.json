@@ -5,36 +5,121 @@
     "overview": {
       "title": "Search term results",
       "transformation": {
-        "fields": ["searchTerm", "searchTerms", "geo", "timeRange", "hasData", "averages", "regionResolutionUsed", "error", "exploreUrl", "scrapedAt"]
+        "fields": [
+          "searchTerm",
+          "searchTerms",
+          "latestValue",
+          "averageValue",
+          "peakValue",
+          "peakDate",
+          "trendChangePercent",
+          "leader",
+          "topRegion",
+          "topQuery",
+          "topRisingQuery",
+          "hasData",
+          "error",
+          "exploreUrl",
+          "scrapedAt"
+        ]
       },
       "display": {
         "component": "table",
         "properties": {
-          "searchTerm": { "label": "Search term" },
-          "searchTerms": { "label": "Compared terms" },
-          "hasData": { "label": "Has data", "format": "boolean" },
-          "averages": { "label": "Averages", "format": "object" },
-          "regionResolutionUsed": { "label": "Region level" },
-          "error": { "label": "Error" },
-          "exploreUrl": { "label": "Open in Google Trends", "format": "link" },
-          "scrapedAt": { "label": "Scraped at", "format": "date" }
+          "searchTerm": {
+            "label": "Search term"
+          },
+          "searchTerms": {
+            "label": "Compared terms"
+          },
+          "latestValue": {
+            "label": "Latest (0-100)",
+            "format": "number"
+          },
+          "averageValue": {
+            "label": "Average",
+            "format": "number"
+          },
+          "peakValue": {
+            "label": "Peak",
+            "format": "number"
+          },
+          "peakDate": {
+            "label": "Peak date",
+            "format": "date"
+          },
+          "trendChangePercent": {
+            "label": "Trend change %",
+            "format": "number"
+          },
+          "leader": {
+            "label": "Most searched"
+          },
+          "topRegion": {
+            "label": "Top region"
+          },
+          "topQuery": {
+            "label": "Top related query"
+          },
+          "topRisingQuery": {
+            "label": "Top rising query"
+          },
+          "hasData": {
+            "label": "Has data",
+            "format": "boolean"
+          },
+          "error": {
+            "label": "Error"
+          },
+          "exploreUrl": {
+            "label": "Open in Google Trends",
+            "format": "link"
+          },
+          "scrapedAt": {
+            "label": "Scraped at",
+            "format": "date"
+          }
         }
       }
     },
     "trending": {
       "title": "Trending now",
       "transformation": {
-        "fields": ["geo", "rank", "title", "approxTraffic", "startedAt", "picture", "exploreUrl"]
+        "fields": [
+          "geo",
+          "rank",
+          "title",
+          "approxTraffic",
+          "startedAt",
+          "picture",
+          "exploreUrl"
+        ]
       },
       "display": {
         "component": "table",
         "properties": {
-          "rank": { "label": "#", "format": "number" },
-          "title": { "label": "Trending search" },
-          "approxTraffic": { "label": "Searches" },
-          "startedAt": { "label": "Started", "format": "date" },
-          "picture": { "label": "Image", "format": "image" },
-          "exploreUrl": { "label": "Explore", "format": "link" }
+          "rank": {
+            "label": "#",
+            "format": "number"
+          },
+          "title": {
+            "label": "Trending search"
+          },
+          "approxTraffic": {
+            "label": "Searches"
+          },
+          "startedAt": {
+            "label": "Started",
+            "format": "date"
+          },
+          "picture": {
+            "label": "Image",
+            "format": "image"
+          },
+          "exploreUrl": {
+            "label": "Explore",
+            "format": "link"
+          }
         }
       }
     }

@@ -70,6 +70,14 @@ One dataset item per search term, or per comparison group. A real result, shorte
   "timeRange": "today 3-m",
   "exploreUrl": "https://trends.google.com/trends/explore?q=bitcoin&date=today+3-m",
   "hasData": true,
+  "latestValue": 25,
+  "averageValue": 31.4,
+  "peakValue": 100,
+  "peakDate": "2026-08-14",
+  "trendChangePercent": -22,
+  "topRegion": "Switzerland",
+  "topQuery": "bitcoin price",
+  "topRisingQuery": "mua bitcoin binance",
   "interestOverTime": [
     { "date": "2026-10-22", "dateTime": "2026-10-22T00:00:00Z", "formattedTime": "Oct 22, 2026", "isPartial": false, "value": 25 },
     { "date": "2026-10-23", "dateTime": "2026-10-23T00:00:00Z", "formattedTime": "Oct 23, 2026", "isPartial": true, "value": 24 }
@@ -87,6 +95,8 @@ One dataset item per search term, or per comparison group. A real result, shorte
   "scrapedAt": "2026-10-23T12:53:11Z"
 }
 ```
+
+The summary fields (`latestValue`, `averageValue`, `peakValue`, `peakDate`, `trendChangePercent`, `topRegion`, `topQuery`, `topRisingQuery`) give you the headline numbers in the results table without opening each item. `trendChangePercent` compares the last quarter of the time range with the first quarter.
 
 In comparison mode, `value` becomes `values` (one number per term), and related queries and topics are grouped per term. Trending-now items contain `geo`, `rank`, `title`, `approxTraffic` (e.g. "2000+"), `approxTrafficMin`, `startedAt`, `picture` and `news`.
 
@@ -117,7 +127,7 @@ AI agents (Claude, ChatGPT, Cursor and others) can call it as a tool through the
 
 - **Values are relative, not search counts.** 100 is the busiest point for that term, place and time; 50 means half as popular. They aren't comparable across separate runs unless you use comparison mode.
 - **Google samples its data.** The same query can return slightly different numbers on different days. That's how Google Trends works, not an error.
-- **Comparisons are limited to 5 terms.** Longer lists are split into groups of 5, and values are only comparable inside a group.
+- **Comparisons are limited to 5 terms.** Longer lists are split into groups of 5, and values are only comparable inside a group. Comparison items name the most searched term in `leader`.
 - **Related topics are sometimes empty.** Google withholds them for some queries and some IPs. The scraper retries once from a residential IP, then returns empty lists rather than failing.
 
 ## FAQ

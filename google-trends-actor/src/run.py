@@ -69,7 +69,40 @@ async def fetch_item(client: TrendsClient, cfg: RunConfig, terms: list[str]) -> 
     except TrendsError as e:
         return {**item, "hasData": False, "error": str(e), "scrapedAt": _now()}
     has_data = data.pop("hasData")
-    return {**item, "hasData": has_data, **data, "scrapedAt": _now()}
+    summary = summarize(terms, data) if has_data else {}
+    return {**item, "hasData": has_data, **summary, **data, "scrapedAt": _now()}
+
+
+def summarize(terms: list[str], data: dict[str, Any]) -> dict[str, Any]:
+    """At-a-glance numbers, so the results table is useful without opening each item."""
+    out: dict[str, Any] = {}
+    rows = data.get("interestOverTime") or []
+    complete = [r for r in rows if not r.get("isPartial")] or rows
+    if len(terms) == 1 and complete:
+        values = [r.get("value") or 0 for r in complete]
+        peak = max(range(len(values)), key=values.__getitem__)
+        quarter = max(1, len(values) // 4)
+        first, last = sum(values[:quarter]) / quarter, sum(values[-quarter:]) / quarter
+        out.update({
+            "latestValue": values[-1],
+            "averageValue": round(sum(values) / len(values), 1),
+            "peakValue": values[peak],
+            "peakDate": complete[peak]["date"],
+            # Last quarter of the range versus the first quarter.
+            "trendChangePercent": round((last - first) / first * 100) if first else None,
+        })
+    elif len(terms) > 1 and data.get("averages"):
+        out["leader"] = max(data["averages"], key=data["averages"].get)
+    regions = data.get("interestByRegion") or []
+    if regions:
+        out["topRegion"] = regions[0].get("geoName")
+    related = data.get("relatedQueries") or {}
+    if len(terms) == 1:
+        if related.get("top"):
+            out["topQuery"] = related["top"][0]["query"]
+        if related.get("rising"):
+            out["topRisingQuery"] = related["rising"][0]["query"]
+    return out
 
 
 async def run(cfg: RunConfig, client: TrendsClient, charger: Charger, log: Any = None) -> Summary:

@@ -114,3 +114,37 @@ async def test_trending_mode_charges_per_trend(make_client):
     summary = await run(cfg, make_client(), charger)
     assert charger.charged == {EVENT_TRENDING: 6} and summary.ok == 6
     assert {i["geo"] for i in charger.items} == {"US", "GB"}
+
+
+# -- at-a-glance summary ----------------------------------------------------------
+
+async def test_items_carry_an_at_a_glance_summary(make_client):
+    cfg = parse_input({"searchTerms": ["python"]})
+    charger = FakeCharger()
+    await run(cfg, make_client(), charger)
+    item = charger.items[0]
+    values = [r["value"] for r in item["interestOverTime"] if not r["isPartial"]]
+    assert item["latestValue"] == values[-1]
+    assert item["peakValue"] == max(values)
+    assert item["peakDate"] == next(r["date"] for r in item["interestOverTime"] if r["value"] == max(values))
+    assert item["averageValue"] == round(sum(values) / len(values), 1)
+    assert isinstance(item["trendChangePercent"], int)
+    assert item["topRegion"] == "Wyoming"
+    assert item["topQuery"] == "what is python"
+    assert item["topRisingQuery"] == item["relatedQueries"]["rising"][0]["query"]
+
+
+async def test_comparison_summary_names_the_leader(make_client, google):
+    google.compare = True
+    cfg = parse_input({"searchTerms": ["chatgpt", "gemini"], "compareTerms": True})
+    charger = FakeCharger()
+    await run(cfg, make_client(), charger)
+    item = charger.items[0]
+    assert item["leader"] == "chatgpt" and "latestValue" not in item
+
+
+def test_summary_handles_flat_start():
+    from src.run import summarize
+    rows = [{"date": f"2026-01-0{i}", "value": v, "isPartial": False} for i, v in enumerate([0, 0, 10, 20], 1)]
+    s = summarize(["x"], {"interestOverTime": rows})
+    assert s["trendChangePercent"] is None and s["peakDate"] == "2026-01-04"
